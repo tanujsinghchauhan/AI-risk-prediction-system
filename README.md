@@ -52,7 +52,7 @@ The workflow is modular, allowing replacement of synthetic data with real clinic
 ---
 
 ## Project Structure
-
+```
 ├── data/
 │ └── synthetic_patient_data.csv # Simulated patient-level timeline data
 ├── artifacts/
@@ -65,7 +65,7 @@ The workflow is modular, allowing replacement of synthetic data with real clinic
 ├── dashboard.py # Streamlit dashboard
 ├── README.md
 └── requirements.txt
-
+```
 ---
 
 ## Getting Started
@@ -73,47 +73,54 @@ The workflow is modular, allowing replacement of synthetic data with real clinic
 1. **Clone the repository**
 
 ```bash
-git clone <your-repo-url>
-cd <repo-folder>
+git clone https://github.com/tanujsinghchauhan/AI-risk-prediction-system
+cd AI-risk-prediction-system
 pip install -r requirements.txt
-Run the Jupyter Notebook
+```
+2. **Run the Jupyter Notebook**
 
-Open notebooks/patient_deterioration.ipynb and execute cells sequentially to:
+3. **Open notebooks/patient_deterioration.ipynb and execute cells sequentially to:**
 
-Load or simulate data
+- Load or simulate data
 
-Perform feature engineering
+- Perform feature engineering
 
-Split into train/test sets
+- Split into train/test sets
 
-Train LightGBM model
+- Train LightGBM model
 
-Evaluate model
+- Evaluate model
 
-Generate SHAP explanations
+- Generate SHAP explanations
 
-Save predictions (artifacts/predictions.csv)
+- Save predictions (artifacts/predictions.csv)
 
-Visualize predictions
+- Visualize predictions
 
-API Usage (Flask)
+---
+
+## API Usage (Flask)
 
 The project provides a REST API to serve predictions.
 
-Run the API
+**Run the API**
+```bash
 python app.py
+```
 Endpoints
 
-Home
+**Home**
 
 URL: /
 
 Method: GET
 
 Response:
+```bash
 {
   "message": "AI Risk Prediction System is running!"
 }
+```
 Predict Risk
 
 URL: /predict
@@ -123,6 +130,7 @@ Method: POST
 JSON Payload: patient features matching features_list.joblib
 
 Example:
+```bash
 {
   "hba1c_last": 7.2,
   "hba1c_mean": 6.8,
@@ -146,7 +154,9 @@ Example:
   "age": 60,
   "sex_M": 1
 }
+```
 Response:
+```bash
 {
   "predicted_risk": 0.475,
   "top_risk_drivers": [
@@ -155,24 +165,30 @@ Response:
     ...
   ]
 }
-Dashboard (Streamlit)
+```
+## Dashboard (Streamlit)
 
 The Streamlit dashboard provides an interactive interface for clinicians to input patient data and visualize risk predictions along with top contributing features.
 
 Run the Dashboard
+```bash
 streamlit run dashboard.py
-Features
+```
 
-Enter patient-level features in the sidebar
+## Features
 
-View predicted risk probability
+- Enter patient-level features in the sidebar
 
-View top 5 risk drivers (SHAP values)
+- View predicted risk probability
 
-Load multiple predictions from artifacts/predictions.csv for batch visualization
+- View top 5 risk drivers (SHAP values)
 
-Dependencies
+- Load multiple predictions from artifacts/predictions.csv for batch visualization
+  
+---
 
+## Dependencies
+```
 Python 3.8+
 
 pandas
@@ -194,12 +210,14 @@ Flask
 Streamlit
 
 joblib
+```
+---
 
-Notes
+### Notes
 
-Current dataset is synthetic for prototyping.
+- Current dataset is synthetic for prototyping.
 
-Replace with real patient data following the same schema for production use.
+- Replace with real patient data following the same schema for production use.
 
-SHAP plots can be large; consider using a subset of data for interactive visualizations.
+- SHAP plots can be large; consider using a subset of data for interactive visualizations.
 ```
